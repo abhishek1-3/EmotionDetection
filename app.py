@@ -6,7 +6,6 @@ from keras.models import load_model
 from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
 import av
 
-# Load the model and face detector
 model = load_model("model_file.h5")
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 labels_dict = {0: 'Angry', 1: 'Disgust', 2: 'Fear', 3: 'Happy', 4: 'Neutral', 5: 'Sad', 6: 'Surprise'}
@@ -14,7 +13,6 @@ labels_dict = {0: 'Angry', 1: 'Disgust', 2: 'Fear', 3: 'Happy', 4: 'Neutral', 5:
 st.title("🧠 Facial Emotion Recognition App")
 mode = st.sidebar.selectbox("Select Mode", ["Image Upload", "Live Webcam"])
 
-# ----------------------- IMAGE MODE ------------------------
 if mode == "Image Upload":
     st.subheader("📷 Upload an Image")
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
@@ -42,7 +40,6 @@ if mode == "Image Upload":
 
         st.image(frame, caption="Detected Faces", channels="RGB")
 
-# ----------------------- WEBCAM MODE ------------------------
 elif mode == "Live Webcam":
     st.subheader("🎥 Live Emotion Detection from Webcam")
 
